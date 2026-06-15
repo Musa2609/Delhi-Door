@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Check, ChevronDown, Globe, Phone, Mail, User, Building, Briefcase, FileText, CheckCircle2, Download, Search, Lock } from 'lucide-react';
 import { Magnet } from '../components/Magnet';
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 interface ConsultationPageProps {
   onBack: () => void;
 }
@@ -118,7 +120,7 @@ export const ConsultationPage: React.FC<ConsultationPageProps> = ({ onBack }) =>
   // Fetch leads database helper
   const fetchLeads = async (pass: string) => {
     try {
-      const response = await fetch('http://localhost:5000/api/leads', {
+      const response = await fetch(`${API_BASE}/api/leads`, {
         headers: {
           'Authorization': pass
         }
@@ -141,7 +143,7 @@ export const ConsultationPage: React.FC<ConsultationPageProps> = ({ onBack }) =>
     setAuthError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/admin/login', {
+      const response = await fetch(`${API_BASE}/api/admin/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: passwordInput })
@@ -164,7 +166,7 @@ export const ConsultationPage: React.FC<ConsultationPageProps> = ({ onBack }) =>
   // Update Lead Status
   const handleUpdateStatus = async (id: string, newStatus: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/leads/${id}/status`, {
+      const response = await fetch(`${API_BASE}/api/leads/${id}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -244,7 +246,7 @@ export const ConsultationPage: React.FC<ConsultationPageProps> = ({ onBack }) =>
         website_trap: honeypot // Spam bot honeypot field
       };
 
-      const response = await fetch('http://localhost:5000/api/consultation', {
+      const response = await fetch(`${API_BASE}/api/consultation`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
