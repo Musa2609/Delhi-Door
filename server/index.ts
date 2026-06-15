@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 import { Resend } from 'resend';
-import { db } from './db';
+import { db } from './db.js';
 
 // Load environment variables
 dotenv.config();
