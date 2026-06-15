@@ -10,6 +10,7 @@
     "build:frontend": "tsc -b && vite build",
     "build:server": "npm --prefix server run build",
     "build": "npm run build:frontend && npm run build:server",
+    "start": "npm --prefix server start",
     "lint": "eslint .",
     "preview": "vite preview"
   },
